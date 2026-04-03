@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="result-page">
+
+    <div class="result-wrapper">
+        <div class="summary-card">
+            <h1>Sentiment Results</h1>
+
+            <h2>Total Comments Analyzed: {{ total_comments }}</h2>
+
+            <div class="stats-lines">
+                <p><strong>Positive:</strong> {{ positive_count }} ({{ positive_percentage }}%)</p>
+                <p><strong>Neutral:</strong> {{ neutral_count }} ({{ neutral_percentage }}%)</p>
+                <p><strong>Negative:</strong> {{ negative_count }} ({{ negative_percentage }}%)</p>
+            </div>
+
+            <div class="progress-group">
+                <label>Positive {{ positive_percentage }}%</label>
+                <div class="progress-bar">
+                    <div class="progress-fill positive-fill" style="width: {{ positive_percentage }}%;"></div>
+                </div>
+            </div>
+
+            <div class="progress-group">
+                <label>Neutral {{ neutral_percentage }}%</label>
+                <div class="progress-bar">
+                    <div class="progress-fill neutral-fill" style="width: {{ neutral_percentage }}%;"></div>
+                </div>
+            </div>
+
+            <div class="progress-group">
+                <label>Negative {{ negative_percentage }}%</label>
+                <div class="progress-bar">
+                    <div class="progress-fill negative-fill" style="width: {{ negative_percentage }}%;"></div>
+                </div>
+            </div>
+
+            <a href="/" class="back-btn">← Analyze Another Video</a>
+        </div>
+
+        <div class="comments-card">
+            <h2>Fetched Comments</h2>
+
+            {% for item in analyzed_comments %}
+            <div class="modern-comment-box">
+                <div class="comment-top-row">
+                    <div class="comment-title">Comment {{ loop.index }}</div>
+
+                    {% if item.sentiment == "Positive" %}
+                        <div class="comment-sentiment positive-text">Positive</div>
+                    {% elif item.sentiment == "Negative" %}
+                        <div class="comment-sentiment negative-text">Negative</div>
+                    {% else %}
+                        <div class="comment-sentiment neutral-text">Neutral</div>
+                    {% endif %}
+                </div>
+
+                <div class="comment-text">{{ item.text }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
