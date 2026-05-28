@@ -3,7 +3,7 @@
 ## 🎯 Project Structure
 
 ```
-/Users/lokimandloi/Desktop/Youtube/
+/Users/payal/Downloads/Youtube/
 ├── yt-sentiment-analysis/          # ML Backend (Flask API)
 │   ├── flask_app/
 │   │   ├── app.py                  # Flask API Server (Port 5005)
@@ -61,13 +61,13 @@ Extension displays results: sentiment distribution, metrics, visualizations
 ## ✅ Prerequisites Setup
 
 ### 1. Backend (Already Done)
-- ✅ Repository cloned to `/Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis`
+- ✅ Repository cloned to `/Users/payal/Download/Youtube/yt-sentiment-analysis`
 - ✅ Virtual environment created (`venv/`)
 - ✅ Dependencies installed
 - ✅ Flask API ready on port 5005
 
 ### 2. Chrome Extension
-- ✅ Repository cloned to `/Users/lokimandloi/Desktop/Youtube/yt-chrome-plugin-frontend`
+- ✅ Repository cloned to `/Users/payal/Download/Youtube/yt-chrome-plugin-frontend`
 - ⚠️ Needs YouTube Data API key (for fetching comments)
 - ⚠️ Needs to be loaded into Chrome
 
@@ -89,7 +89,7 @@ You need a Google API key to fetch YouTube comments:
 The Flask API should be running on port 5005:
 
 ```bash
-cd /Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis/flask_app
+cd /Users/payal/Downloads/Youtube/yt-sentiment-analysis/flask_app
 source ../venv/bin/activate
 python app.py
 ```
@@ -101,7 +101,7 @@ python app.py
 
 ### Step 2: Update Chrome Extension with YouTube API Key
 
-Edit the file: `/Users/lokimandloi/Desktop/Youtube/yt-chrome-plugin-frontend/popup.js`
+Edit the file: `/Users/payal/Downloads/Youtube/yt-chrome-plugin-frontend/popup.js`
 
 Find this line (around line 5):
 ```javascript
@@ -124,7 +124,7 @@ const API_KEY = 'AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
 3. **Load Unpacked Extension**
    - Click "Load unpacked"
-   - Navigate to: `/Users/lokimandloi/Desktop/Youtube/yt-chrome-plugin-frontend`
+   - Navigate to: `/Users/payal/Downloads/Youtube/yt-chrome-plugin-frontend`
    - Select the folder and click "Open"
 
 4. **Verify Extension Loaded**
@@ -135,7 +135,7 @@ const API_KEY = 'AIzaSyDxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
 1. **Start Flask API** (if not already running):
    ```bash
-   cd /Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis/flask_app
+   cd /Users/payal/Downloads/Youtube/yt-sentiment-analysis/flask_app
    source ../venv/bin/activate
    python app.py
    ```

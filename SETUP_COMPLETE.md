@@ -3,17 +3,17 @@
 ## 🎉 What Has Been Done
 
 ### 1. ✅ Backend Repository Cloned
-- **Location:** `/Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis/`
+- **Location:** `/Users/payal/Downloads/Youtube/yt-sentiment-analysis/`
 - **Status:** Ready
 - **Contains:** ML models, Flask API, DVC pipeline
 
 ### 2. ✅ Chrome Extension Repository Cloned  
-- **Location:** `/Users/lokimandloi/Desktop/Youtube/yt-chrome-plugin-frontend/`
+- **Location:** `/Users/payal/Downloads/Youtube/yt-chrome-plugin-frontend/`
 - **Status:** Ready
 - **Contains:** Chrome extension UI and logic
 
 ### 3. ✅ Python Virtual Environment Created
-- **Location:** `/Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis/venv/`
+- **Location:** `/Users/payal/downloads/Youtube/yt-sentiment-analysis/venv/`
 - **Status:** Active and configured
 
 ### 4. ✅ All Dependencies Installed
@@ -34,7 +34,7 @@
 
 ### **Step 2: Update Chrome Extension**
 
-Edit: `/Users/lokimandloi/Desktop/Youtube/yt-chrome-plugin-frontend/popup.js`
+Edit: `/Users/payal/Downloads/Youtube/yt-chrome-plugin-frontend/popup.js`
 
 **Find this line (around line 5):**
 ```javascript
@@ -56,7 +56,7 @@ const API_URL = 'http://localhost:5005';
 1. Open Chrome and go to: `chrome://extensions/`
 2. **Enable Developer mode** (top-right toggle)
 3. Click **Load unpacked**
-4. Select: `/Users/lokimandloi/Desktop/Youtube/yt-chrome-plugin-frontend/`
+4. Select: `/Users/payal/Downloads/Youtube/yt-chrome-plugin-frontend/`
 5. Click **Open** - Extension loaded! ✅
 
 ---
@@ -66,7 +66,7 @@ const API_URL = 'http://localhost:5005';
 ### Option A: Start Flask from Terminal (Recommended for Development)
 
 ```bash
-cd /Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis/flask_app
+cd /Users/payal/Downloads/Youtube/yt-sentiment-analysis/flask_app
 source ../venv/bin/activate
 python app_simple.py
 ```
@@ -94,7 +94,7 @@ A VS Code task has been configured in your workspace
 ## 📋 Project Structure
 
 ```
-/Users/lokimandloi/Desktop/Youtube/
+/Users/payal/Downloads/Youtube/
 │
 ├── yt-sentiment-analysis/              # Backend ML + API
 │   ├── flask_app/
@@ -123,7 +123,7 @@ A VS Code task has been configured in your workspace
 
 ### 1. Start Flask API
 ```bash
-cd /Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis/flask_app
+cd /Users/payal/Downloads/Youtube/yt-sentiment-analysis/flask_app
 source ../venv/bin/activate
 python app_simple.py
 ```
@@ -186,7 +186,7 @@ YOUTUBE_API_KEY=your_key_here
 curl http://localhost:5005/health
 
 # If not running, start it:
-cd /Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis/flask_app
+cd /Users/payal/Downloads/Youtube/yt-sentiment-analysis/flask_app
 source ../venv/bin/activate
 python app_simple.py
 ```
@@ -206,7 +206,7 @@ kill -9 <PID>
 ### Python module errors
 ```bash
 # Reinstall dependencies
-cd /Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis
+cd /Users/payal/Downloads/Youtube/yt-sentiment-analysis
 source venv/bin/activate
 pip install --upgrade -r requirements.txt
 ```
@@ -215,10 +215,10 @@ pip install --upgrade -r requirements.txt
 
 ## 📚 Additional Resources
 
-- **Main README**: `/Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis/README.md`
-- **Integration Guide**: `/Users/lokimandloi/Desktop/Youtube/INTEGRATION_GUIDE.md`
-- **Flask App**: `/Users/lokimandloi/Desktop/Youtube/yt-sentiment-analysis/flask_app/`
-- **Extension Code**: `/Users/lokimandloi/Desktop/Youtube/yt-chrome-plugin-frontend/popup.js`
+- **Main README**: `/Users/payal/Downloads/Youtube/yt-sentiment-analysis/README.md`
+- **Integration Guide**: `/Users/payal/Downloads/Youtube/INTEGRATION_GUIDE.md`
+- **Flask App**: `/Users/payal/Downloads/Youtube/yt-sentiment-analysis/flask_app/`
+- **Extension Code**: `/Users/payal/Downloads/Youtube/yt-chrome-plugin-frontend/popup.js`
 
 ---
 
