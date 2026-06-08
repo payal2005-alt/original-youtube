@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Sentiment Analysis Dashboard</title>
+    <script src="chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .chart-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chart-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.5em;
+        }
+
+        #sentimentChart {
+            max-width: 400px;
+            max-height: 400px;
+        }
+
+        .stats-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .stats-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.5em;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .stat-value {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .stat-value.positive {
+            color: #4caf50;
+        }
+
+        .stat-value.neutral {
+            color: #ff9800;
+        }
+
+        .stat-value.negative {
+            color: #f44336;
+        }
+
+        .comments-section {
+            grid-column: 1 / -1;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 30px;
+        }
+
+        .comments-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.5em;
+        }
+
+        .comments-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .comment-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 6px;
+            padding: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .comment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-card.positive {
+            border-left-color: #4caf50;
+        }
+
+        .comment-card.neutral {
+            border-left-color: #ff9800;
+        }
+
+        .comment-card.negative {
+            border-left-color: #f44336;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-number {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 0.9em;
+        }
+
+        .sentiment-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .sentiment-badge.positive {
+            background: #4caf50;
+        }
+
+        .sentiment-badge.neutral {
+            background: #ff9800;
+        }
+
+        .sentiment-badge.negative {
+            background: #f44336;
+        }
+
+        .comment-text {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .close-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #da190b;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        @media (max-width: 900px) {
+            .dashboard-content {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="close-btn" id="closeDashboardBtn" type="button">Close</button>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1> Sentiment Analysis Dashboard</h1>
+            <p id="videoTitle">Loading video info...</p>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="chart-section">
+                <h2>Sentiment Distribution</h2>
+                <canvas id="sentimentChart"></canvas>
+            </div>
+
+            <div class="stats-section">
+                <h2>Analysis Statistics</h2>
+                <div class="stat-item">
+                    <span class="stat-label">Total Comments</span>
+                    <span class="stat-value" id="totalComments">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Positive Comments</span>
+                    <span class="stat-value positive" id="positiveCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Neutral Comments</span>
+                    <span class="stat-value neutral" id="neutralCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Negative Comments</span>
+                    <span class="stat-value negative" id="negativeCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Unique Commenters</span>
+                    <span class="stat-value" id="uniqueCommenters">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Avg Comment Length</span>
+                    <span class="stat-value" id="avgCommentLength">0 words</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Avg Sentiment Score</span>
+                    <span class="stat-value" id="avgSentimentScore">0/10</span>
+                </div>
+            </div>
+
+            <div class="comments-section">
+                <h2>💬 All Comments with Sentiments</h2>
+                <div class="comments-list" id="commentsList">
+                    <p>Loading comments...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

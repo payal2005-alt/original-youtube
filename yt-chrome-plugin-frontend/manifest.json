@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Sentiment Analysis",
+  "version": "1.0",
+  "description": "Analyzes YouTube video comments for sentiment.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "https://www.googleapis.com/*",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "https://www.googleapis.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' http://localhost:* http://127.0.0.1:* https://www.googleapis.com"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["dashboard.html", "dashboard.js", "chart.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
