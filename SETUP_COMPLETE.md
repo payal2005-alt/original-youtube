@@ -244,14 +244,5 @@ pip install --upgrade -r requirements.txt
 
 ---
 
-## 💡 Pro Tips
 
-- Use `app_simple.py` instead of `app.py` to avoid environment issues
-- Keep Flask terminal window open while using the extension
-- The extension sends comments to Flask on port 5005 for analysis
-- Rule-based sentiment works even without the ML model loaded
-- Clear Chrome cache if extension doesn't update after changes
 
----
-
-**Everything is configured and ready to go! Just need YouTube API key and you're all set! 🚀**
